@@ -50,7 +50,7 @@ function nextDate (){
         while (today > nextBday){
             nextBday =  new Date (nextBday.setSeconds(nextBday.getSeconds()+period))
         }
-        document.getElementById(planet+'BD').innerHTML=nextBday.getDate()+' '+months[(nextBday.getMonth())]+' '+nextBday.getFullYear()
+        document.getElementById(planet+'BD').innerHTML=nextBday.getDate()+' '+months[(nextBday.getMonth())]+' '+nextBday.getFullYear()+' '
         nextBday = new Date (birthday)
     })
     
@@ -60,6 +60,7 @@ function calculate(){
     if(document.getElementById('birthdate').value){
         currentAge()
         nextDate()
+        document.getElementById('unhide').style.visibility='visible'
     }
 
 }
