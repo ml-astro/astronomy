@@ -1,20 +1,22 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+	margin: 0;
+    font-family: 'Segoe UI', 'Tahoma', 'Verdana';
+}
+
 body {
 	background:#3d3d3d;
 	color:#fff;
-	line-height: 1.6;
-	font-family: 'Segoe UI', 'Tahoma', 'Verdana';
-	padding: 1em;
+	line-height: 2;
+
 }
 
-p, td, .button, label, input {
+p, td, label, input {
     text-align: center;
-    font-size: 1.2em;
+    font-size: 130%;
     margin:0;
   }
-
-form {
-    
-}
 
 tr {
     background:#333131;
@@ -29,6 +31,8 @@ tr:nth-child(even){
     background:#201f1f;
 }
 
+
+
 main {
     margin:0 auto;
     width: 50vw;
@@ -38,6 +42,14 @@ main {
     text-align: center;
 }
 
+.button {
+    display: inline-block;
+    margin: 0 auto;
+    width: 200px;
+    background-color: rgb(98, 112, 133);
+    text-align: center;
+    font-size: 1.2em;
+}
 
 @media screen and (max-width: 800px) {
 	table {
@@ -46,9 +58,18 @@ main {
         margin: 0;
     }
     
+    td:nth-child(even){
+        width: 30%;
+    }
+
+    img{
+        width: 100%;
+    }
+
     main, body {
         padding: 0;
         margin: 0;
+        width: 100vw;
     }
 
     p {
