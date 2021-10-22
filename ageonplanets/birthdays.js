@@ -50,7 +50,7 @@ function nextDate (){
         while (today > nextBday){
             nextBday =  new Date (nextBday.setSeconds(nextBday.getSeconds()+period))
         }
-        document.getElementById(planet+'BD').innerHTML=nextBday.getDate()+' '+months[(nextBday.getMonth())]+' '+nextBday.getFullYear()+' '
+        document.getElementById(planet+'BD').innerHTML=nextBday.getDate()+' '+months[(nextBday.getMonth())]+' '+nextBday.getFullYear()+' года'
         nextBday = new Date (birthday)
     })
     
