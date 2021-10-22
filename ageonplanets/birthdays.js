@@ -24,7 +24,7 @@ const months=[
 ];
 
 function ageFormat (age){
-    if(age%10 == 2 || age%10 == 3 || age%10 == 3){
+    if(age%10 == 2 || age%10 == 3 || age%10 == 4){
         return age+' года'
     }
     else if(age%10 == 1){
@@ -57,6 +57,9 @@ function nextDate (){
 }
 
 function calculate(){
-    currentAge()
-    nextDate()
+    if(document.getElementById('birthdate').value){
+        currentAge()
+        nextDate()
+    }
+
 }
