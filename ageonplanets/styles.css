@@ -10,6 +10,30 @@ body {
 	color:#fff;
 }
 
+main {
+    margin:0 auto;
+    width: 50vw;
+}
+
+p {
+    line-height: 2;
+}
+
+.centered {
+    text-align: center;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+}
+
+.button {
+    display: inline-block;
+    margin: auto;
+    width: 200px;
+    background-color: rgb(98, 112, 133);
+    text-align: center;
+    font-size: 130%;
+}
+
 form {
     display: inline-block;
     text-align: center;
@@ -32,16 +56,18 @@ form input, form label {
     border-radius: 5px;
 }
 
-p {
-    line-height: 2;
-}
-
 #unhide {
     display: none;
 }
 
 span {
     text-decoration: solid;
+}
+
+table {
+    margin:0 auto;
+    width:50vw;
+    box-shadow: 0 0 0 5px rgb(59, 52, 52);
 }
 
 p, td, label, input {
@@ -59,39 +85,15 @@ tr {
     background:#333131;
 }
 
-table {
-    margin:0 auto;
-    width:50vw;
-}
-
-td:nth-child(odd){
+td:nth-child(1){
     width: 30%;
-    border-radius: 20px;
+    background: black;
 }
 
 tr:nth-child(even){
     background:#201f1f;
 }
 
-main {
-    margin:0 auto;
-    width: 50vw;
-}
-
-.centered {
-    text-align: center;
-    margin-top: 4vw;
-    margin-bottom: 4vw;
-}
-
-.button {
-    display: inline-block;
-    margin: auto;
-    width: 200px;
-    background-color: rgb(98, 112, 133);
-    text-align: center;
-    font-size: 130%;
-}
 
 @media screen and (max-width: 1130px) {
 	table {
