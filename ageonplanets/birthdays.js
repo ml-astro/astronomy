@@ -24,6 +24,9 @@ const months=[
 ];
 
 function ageFormat (age){
+    if(age==11 || age==12){
+        return age+' лет'
+    }
     if(age%10 == 2 || age%10 == 3 || age%10 == 4){
         return age+' года'
     }
