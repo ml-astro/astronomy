@@ -38,7 +38,7 @@ function currentAge (){
     let today = new Date()
     let range = today - birthday
     planets.forEach((period, planet) => {
-        document.getElementById(planet+'Age').innerHTML=ageFormat(Math.floor(range/(period*1000)))
+        document.getElementById(planet+'Age').innerHTML='<b>'+ageFormat(Math.floor(range/(period*1000)))+'</b>'
     })
 }
 
@@ -50,7 +50,7 @@ function nextDate (){
         while (today > nextBday){
             nextBday =  new Date (nextBday.setSeconds(nextBday.getSeconds()+period))
         }
-        document.getElementById(planet+'BD').innerHTML=nextBday.getDate()+' '+months[(nextBday.getMonth())]+' '+nextBday.getFullYear()+' года'
+        document.getElementById(planet+'BD').innerHTML='<b>'+nextBday.getDate()+' '+months[(nextBday.getMonth())]+' '+nextBday.getFullYear()+'&nbsp;года</b>'
         nextBday = new Date (birthday)
     })
     
@@ -60,7 +60,7 @@ function calculate(){
     if(document.getElementById('birthdate').value){
         currentAge()
         nextDate()
-        document.getElementById('unhide').style.visibility='visible'
+        document.getElementById('unhide').style.display='initial'
     }
 
 }

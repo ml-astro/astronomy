@@ -9,13 +9,13 @@
 </head>
 <body>
     <main>
-    <p class="centered">Чтобы узнать свой возраст на разных планетах, укажи дату своего рождения на Земле</p>
-    <form>
+    <p class="centered">Чтобы узнать свой возраст на разных планетах, укажи дату&nbsp;своего рождения на Земле</p>
+    <div class="form"><form>
             <label>Дата рождения</label>
             <input type="date" id="birthdate">
-            <br>
         <div class="button" onclick="calculate()">РАССЧИТАТЬ</div>
-    </form>
+    </form></div>
+    
     <div id="unhide">
     <p class='centered'>Итак, вот твой возраст!</p>
     <table>
@@ -23,32 +23,33 @@
             <td></td>
         </tr>
         <tr>
-            <td style="width: 30%;"><img src="mercury.jpg"/></td>
-            <td><span id="mercuryAge"></span> в годах Меркурия.<br/>Следующий день рождения:<br/> <span id="mercuryBD"></span></td>
+            <td><img src="mercury.jpg"/></td>
+            <td><p><span id="mercuryAge"></span> в годах Меркурия.<br/>Следующий день рождения:<br/> <span id="mercuryBD"></span></p></td>
         </tr>
         <tr>
-            <td style="width: 30%;"><img src="venus.png"/></td>
-            <td><span id="venusAge"></span> в годах Венеры.<br/>Следующий день рождения:<br/><span id="venusBD"></span></td>
+            <td><img src="venus.png"/></td>
+            
+            <td><p><span id="venusAge"></span> в годах Венеры.<br/>Следующий день рождения:<br/><span id="venusBD"></span></p></td>
         </tr>
         <tr>
-            <td style="width: 30%;"><img src="mars.jpg"/></td>
-            <td><span id="marsAge"></span> в годах Марса.<br/>Следующий день рождения:<br/><span id="marsBD"></span></td>
+            <td><img src="mars.jpg"/></td>
+            <td><p><span id="marsAge"></span> в годах Марса.<br/>Следующий день рождения:<br/><span id="marsBD"></span></p></td>
         </tr>
         <tr>
-            <td style="width: 30%;"><img src="jupiter.jpg"/></td>
-            <td><span id="jupiterAge"></span> в годах Юпитера.<br/>Следующий день рождения:<br/><span id="jupiterBD"></span></td>
+            <td><img src="jupiter.jpg"/></td>
+            <td><p><span id="jupiterAge"></span> в годах Юпитера.<br/>Следующий день рождения:<br/><span id="jupiterBD"></span></p></td>
         </tr>
         <tr>
-            <td style="width: 30%;"><img src="saturn.jpg"/></td>
-            <td><span id="saturnAge"></span> в годах Сатурна.<br/>Следующий день рождения:<br/><span id="saturnBD"></span></td>
+            <td><img src="saturn.jpg"/></td>
+            <td><p><span id="saturnAge"></span> в годах Сатурна.<br/>Следующий день рождения:<br/><span id="saturnBD"></span></p></td>
         </tr>
         <tr>
-            <td style="width: 30%;"><img src="uranus.jpg"/></td>
-            <td><span id="uranusAge"></span> в годах Урана.<br/>Следующий день рождения:<br/><span id="uranusBD"></span></td>
+            <td><img src="uranus.jpg"/></td>
+            <td><p><span id="uranusAge"></span> в годах Урана.<br/>Следующий день рождения:<br/><span id="uranusBD"></span></p></td>
         </tr>
         <tr>
-            <td style="width: 30%;"><img src="neptune.jpg"/></td>
-            <td><span id="neptuneAge"></span> в годах Нептуна.<br/>Следующий день рождения:<br/><span id="neptuneBD"></span></td>
+            <td><img src="neptune.jpg"/></td>
+            <td><p><span id="neptuneAge"></span> в годах Нептуна.<br/>Следующий день рождения:<br/><span id="neptuneBD"></span</p>></td>
         </tr>
     </table>
 </div>
