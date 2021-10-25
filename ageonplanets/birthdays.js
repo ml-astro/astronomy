@@ -24,16 +24,21 @@ const months=[
 ];
 
 function ageFormat (age){
-    if(age==11 || age==12 || age==13 || age==14){
-        return age+' лет'
-    }
-    if(age%10 == 2 || age%10 == 3 || age%10 == 4){
-        return age+' года'
-    }
-    else if(age%10 == 1){
-        return age+' год'
-    }
-    return age+' лет'
+	let txt;
+	count = age % 100;
+	if (count >= 5 && count <= 20) {
+		txt = 'лет';
+	} else {
+		count = count % 10;
+		if (count == 1) {
+			txt = 'год';
+		} else if (count >= 2 && count <= 4) {
+			txt = 'года';
+		} else {
+			txt = 'лет';
+		}
+	}
+	return age+" "+txt;
 }
 
 function currentAge (){
