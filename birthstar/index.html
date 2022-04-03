@@ -5,16 +5,21 @@
   <title>Твой звёздный день рождения</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+
 </head>
 <body>
   <h1>Твой звёздный день рождения</h1>
   <main>
-    <button>РАССЧИТАТЬ</button>
-    <div class="form"><form>
-      <label>Дата рождения</label>
-      <input type="date" id="birthdate">
-    </form>
+  <form>
+    <p>Укажи дату своего рождения</p>
+    <input type="date" id="birthdate">
+  </form>
+  <button>РАССЧИТАТЬ</button>
     <p class="result"></p>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js" charset="utf-8"></script>
+    <div id="aladin-lite-div" style="width:400px;height:400px;"></div>
+<script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
   </main>
 
   <script src="js/callbacks.js"></script>
