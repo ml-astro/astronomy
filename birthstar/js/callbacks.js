@@ -1,13 +1,14 @@
 const stars = './js/stars.json';
 const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря',];
 const btn = document.querySelector('button');
-var starData;
-var age;
-var birthdayStar;
+let starData;
+let age;
+let birthdayStar;
+let birth;
 
 //calculates person's age
 function currentAge(){
-  let birth = document.getElementById('birthdate').value;
+  birth = document.getElementById('birthdate').value;
   if(birth){
     let birthday = new Date(document.getElementById('birthdate').value);
     let today = new Date();
@@ -93,9 +94,10 @@ function displayType(star){
 }
 
 function displayResult(){
-  console.log(birthdayStar);
+  document.querySelector('.result').style.display='block';
+  document.querySelector('.nextresult').style.display='block';
   document.querySelector('.result').innerHTML=(
-    `Сейчас свет, который прилетает к нам от звезды <b>"${birthdayStar.id}"</b> почти такого же возраста, как ты.<br>
+    `Сейчас свет, который прилетает к нам от звезды:<br> <b>"${birthdayStar.id}"</b> почти такого же возраста, как ты.<br>
     Звезда находится на расстоянии<b> ${birthdayStar.dist} </b>световых лет от Земли.<br>
     ${isVisible(birthdayStar)}<br><b>${birthdayStar.id}</b> - ${displayType(birthdayStar)}<br>
     Координаты звезды:<br>
@@ -103,8 +105,10 @@ function displayResult(){
     Склонение: <b>${birthdayStar.y}\xB0</b>`
     );
     var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:0.1, target: birthdayStar.id});
+    let nextBirthday = new Date(birth);
+    let nextDate = new Date(nextBirthday.getTime()+nextStar.dist*365.25*24*3600*1000);
+    document.querySelector('.nextresult').innerHTML=`Следующий звёздный день рождения состоится для звезды:<br> <b>${nextStar.id}</b><br>и случится это <b>${nextDate.getDate()} ${months[nextDate.getMonth()]} ${nextDate.getFullYear()} года!</b>`;
 }
-
 // спектральный класс - гигант, карлик, цвет
 // тип звезды
 // интегрировать aladin lite

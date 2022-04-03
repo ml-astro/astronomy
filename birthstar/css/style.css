@@ -14,7 +14,6 @@ body {
   margin: 0;
   padding: 0.5em 0 2em 0;
   background-image: url('../img/sun.jpg');
-
 }
 
 h1 {
@@ -64,9 +63,10 @@ form p {
   margin: 0 auto;
 }
 
-.result {
+.result, .nextresult {
   font-size: 1.2em;
-  background-color: rgba(50,50,50,0.5);
+  display: none;
+  background-color: rgba(50,50,50,0.7);
   padding: 20px;
 }
 
