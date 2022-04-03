@@ -5,6 +5,7 @@ let starData;
 let age;
 let birthdayStar;
 let birth;
+let listPosition;
 
 //calculates person's age
 function currentAge(){
@@ -16,28 +17,33 @@ function currentAge(){
     if(age<=110){
       getStarList(stars);
     }
-    else {document.querySelector('.result').innerHTML='Возраст слишком большой';}
+    else {document.querySelector('.result').innerHTML='Возраст слишком большой.';}
   }
 }
 
 //gets the json for all stars
 function getStarList(url) {
-  const request = new XMLHttpRequest();
-  request.open('GET', url);
-  request.onload = () => {
-    if(request.status === 200 && request.readyState === 4) {
-      starData = JSON.parse(request.responseText);
-      calculateBirthdayStar();
-    }
-  };
-  request.send();
+  if(!starData){
+    const request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = () => {
+      if(request.status === 200 && request.readyState === 4) {
+        starData = JSON.parse(request.responseText);
+        calculateBirthdayStar();
+      }
+    };
+    request.send();
+  }
+  else calculateBirthdayStar();//проверка на повторную отправку запроса. если json уже получен, можно не запрашивать
 }
 
+//searches for previous birthdaystar and the next one
 function calculateBirthdayStar(){
   for(let i=0; i<starData.length; i++){
     if(starData[i].dist < age){
       //while the distance is lower, then its considered as the last birthdaystar
       birthdayStar = starData[i];
+      listPosition = i+1;
     } else {
       //if previous star is closer, then this star is the next birthdaystar
       nextStar=(starData[i]);
@@ -47,6 +53,7 @@ function calculateBirthdayStar(){
   }
 }
 
+//is the star visible to naked eye
 function isVisible(star){
   if(star.mag<6){
     return `Её яркость <b>${star.mag}</b> и сейчас она видна такой, какой была при твоём рождении!`;
@@ -58,6 +65,7 @@ function isVisible(star){
   }
 }
 
+//displays text about the type of star
 function displayType(star){
   switch(star.type){
     case 'pm': return 'звезда с большим собственным движением.';
@@ -93,12 +101,14 @@ function displayType(star){
   }
 }
 
+//displays all results
 function displayResult(){
   document.querySelector('.result').style.display='block';
   document.querySelector('.nextresult').style.display='block';
   document.querySelector('.result').innerHTML=(
     `Сейчас свет, который прилетает к нам от звезды:<br> <b>"${birthdayStar.id}"</b> почти такого же возраста, как ты.<br>
-    Звезда находится на расстоянии<b> ${birthdayStar.dist} </b>световых лет от Земли.<br>
+    Звезда спектрального класса <b>${birthdayStar.spec}</b> находится на расстоянии<b> ${birthdayStar.dist} </b>световых лет от Земли.<br>
+    Из открытых она занимает <b>${listPosition}</b> место по удалённости от Солнечной системы. </br>
     ${isVisible(birthdayStar)}<br><b>${birthdayStar.id}</b> - ${displayType(birthdayStar)}<br>
     Координаты звезды:<br>
     Прямое восхождение: <b>${birthdayStar.x}\xB0</b><br>
@@ -110,12 +120,6 @@ function displayResult(){
     document.querySelector('.nextresult').innerHTML=`Следующий звёздный день рождения состоится для звезды:<br> <b>${nextStar.id}</b><br>и случится это <b>${nextDate.getDate()} ${months[nextDate.getMonth()]} ${nextDate.getFullYear()} года!</b>`;
 }
 // спектральный класс - гигант, карлик, цвет
-// тип звезды
-// интегрировать aladin lite
-// номер по удаленности
-// координаты
 // положение в небе
-// проверка на повторную отправку
-// проверка возраста
 
 btn.addEventListener('click', currentAge);
