@@ -70,6 +70,7 @@ form p {
   display: none;
   background-color: rgba(50,50,50,0.7);
   padding: 20px;
+  border-radius: 10px;
 }
 
 input {
@@ -77,6 +78,10 @@ input {
   font-size: 1.5em;
   width: 100%;
   padding: 16px;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 /* MEDIA QUERIES */
