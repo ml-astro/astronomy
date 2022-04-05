@@ -1,5 +1,8 @@
 // position in the sky
 //fade out when new date
+//star names
+//get HIP catalogue and merge
+//shorten type
 
 const stars = './js/stars.json';
 const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря',];
@@ -12,7 +15,6 @@ let listPosition;
 
 //calculates person's age
 function currentAge(){
-  document.querySelector('section').style.transition='none';
   document.querySelector('section').style.opacity=0;
   birth = document.getElementById('birthdate').value;
   //check if date is in the future
@@ -166,22 +168,34 @@ function displayLuminosity(luminosity){
 function displayResult(){
   document.querySelector('.result').style.display='block';
   document.querySelector('.nextresult').style.display='block';
-  document.querySelector('section').style.opacity=1;
-  document.querySelector('section').style.transition='opacity 1s ease-in';
+  if(document.querySelector('section').style.opacity==0){
+    document.querySelector('section').style.opacity=1;
+    document.querySelector('section').style.transition='opacity 1s ease-in';
+  }
+  else {
+    document.querySelector('section').style.opacity=0;
+    document.querySelector('section').style.transition='opacity 1s ease-in';
+  }
   document.querySelector('.result').innerHTML=(
-    `Прямо сейчас фотоны света, которые прилетают к нам от звезды <span class='nowrap'><b>${birthdayStar.id}</b></span> почти такого же возраста, как ты! Они покинули звезду чуть позже момента твоего рождения и только сейчас достигли Земли.<br>
+    `Прямо сейчас фотоны света, которые прилетают к нам от звезды <span class='nowrap'><b>${birthdayStar.id}</b></span>, почти такого же возраста, как ты! Они покинули звезду немного раньше момента твоего рождения и только сейчас достигли Земли.<br>
     ${isVisible(birthdayStar)}<br><br>
     Эта ${displaySpectral(birthdayStar.spec)} звезда${displayLuminosity(birthdayStar.spec)} ${birthdayStar.spec=='~'?'':('спектрального класса <b>'+birthdayStar.spec)}</b> находится на расстоянии<b> ${birthdayStar.dist} </b>световых лет от Земли.<br>
     Из открытых она занимает <b>${listPosition}-е</b> место по удалённости от Земли. <br>
-    ${birthdayStar.type=='Star'? '':(`<b>${birthdayStar.id}</b> - ${displayType(birthdayStar)}<br>`)}<br>
+    Информация о звезде ${birthdayStar.type=='Star'? '':(`<b>${birthdayStar.id}</b>: ${displayType(birthdayStar)}<br>`)}<br>
     Координаты в небе:<br>
     Прямое восхождение: <b>${birthdayStar.x}\xB0</b><br>
     Склонение: <b>${birthdayStar.y}\xB0</b>`
     );
-    var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:0.1, target: birthdayStar.id});
+    var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:0.5, target: birthdayStar.id});
     let nextBirthday = new Date(birth);
     let nextDate = new Date(nextBirthday.getTime()+nextStar.dist*365.25*24*3600*1000);
     document.querySelector('.nextresult').innerHTML=`Твой следующий звёздный день рождения состоится для звезды <b><span class='nowrap'>"${nextStar.id}"</span></b> и случится это <b>${nextDate.getDate()} ${months[nextDate.getMonth()]} ${nextDate.getFullYear()} года!</b>`;
+
+
 }
 
 btn.addEventListener('click', currentAge);
+
+/*let pointer = document.querySelector('.pointer');
+pointer.style.left = ((180/360*100)-2.5)*1.0+'%';
+pointer.style.top = ((75/180*100)-5)*0.98+'%';*/

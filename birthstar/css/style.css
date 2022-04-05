@@ -33,12 +33,11 @@ h1, p {
 main {
   width: 95%;
   margin: 0 auto;
+  position: relative;
 }
 
 img {
   width: 100%;
-  border-radius: 5px;
-  margin-bottom: 15px;
 }
 
 button {
@@ -84,6 +83,26 @@ input {
   white-space: nowrap;
 }
 
+.starchart {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0;
+}
+
+
+.map {
+  background-color: #000000;
+  border: 1px solid black;
+  width: 100%;
+  height: auto;
+  background-image: url('../img/starmap_figures.png');
+}
+
+.pointer {
+  width: 5%;
+  position: absolute;
+}
+
 /* MEDIA QUERIES */
 
 @media (min-width: 568px) {
@@ -106,11 +125,7 @@ input {
     width: 70%;
     max-width: 900px;
   }  
-  img {
-    width: auto;
-    float: left;
-    margin-right: 20px;
-  }
+
   label {
     width: 30%;
   }
