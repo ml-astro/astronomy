@@ -15,7 +15,9 @@ body {
   padding: 0.5em 0 2em 0;
   background-image: url('../img/sun.jpg');
   background-attachment: fixed;
-  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
 }
 
 h1 {
@@ -23,6 +25,10 @@ h1 {
   line-height: 1.15;
   text-align: center;
   margin-bottom: 1.5em;
+}
+
+form p {
+  font-size: 1.2em;
 }
 
 h1, p {
@@ -117,8 +123,6 @@ input {
     width: 30%;
   }
 }
-
-
 
 @media (min-width: 768px) {
   main {

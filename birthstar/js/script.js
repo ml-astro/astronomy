@@ -1,8 +1,5 @@
-// position in the sky
+//position in the sky
 //fade out when new date
-//star names
-//get HIP catalogue and merge
-//shorten type
 
 const stars = './js/stars.json';
 const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря',];
