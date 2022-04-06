@@ -13,11 +13,8 @@ body {
   font-family: Verdana,Tahoma, sans-serif;
   margin: 0;
   padding: 0.5em 0 2em 0;
-  background-image: url('../img/sun.jpg');
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:cover;
+  background: url('../img/sun.jpg') no-repeat fixed center top;
+  background-size: cover;
 }
 
 h1 {
@@ -70,6 +67,10 @@ form p {
   margin: 0 auto;
 }
 
+section {
+  opacity: 0;
+}
+
 .result, .nextresult {
   font-size: 1.2em;
   display: none;
@@ -87,26 +88,6 @@ input {
 
 .nowrap {
   white-space: nowrap;
-}
-
-.starchart {
-  width: 100%;
-  position: relative;
-  margin-bottom: 0;
-}
-
-
-.map {
-  background-color: #000000;
-  border: 1px solid black;
-  width: 100%;
-  height: auto;
-  background-image: url('../img/starmap_figures.png');
-}
-
-.pointer {
-  width: 5%;
-  position: absolute;
 }
 
 /* MEDIA QUERIES */

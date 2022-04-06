@@ -1,5 +1,6 @@
-//position in the sky
 //fade out when new date
+//display russian names
+//if sun only, then do not query aladin
 
 const stars = './js/stars.json';
 const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря',];
@@ -12,7 +13,6 @@ let listPosition;
 
 //calculates person's age
 function currentAge(){
-  document.querySelector('section').style.opacity=0;
   birth = document.getElementById('birthdate').value;
   //check if date is in the future
   if(birth){
@@ -20,9 +20,6 @@ function currentAge(){
       let birthday = new Date(document.getElementById('birthdate').value);
       let today = new Date();
       age = (today - birthday)/(1000*3600*24*365.25);
-      if(age<4.02){
-
-      }
       if(age<=110){
         getStarList(stars);
       }
@@ -86,7 +83,7 @@ function displayType(star){
     case 'wd': return 'белый карлик. Звезда лишена источников термоядерной энергии и светится благодаря своей тепловой энергии, постепенно остывая в течение миллиардов лет.';
     case 'dbl*': return 'спектрально-двойная звезда. Её двойственность обнаружили при помощи спектральных наблюдений. Оба компонента расположены настолько близко, что увидеть их раздельно с использованием современных телескопов невозможно.';
     case 'bd': return 'коричневый карлик массой менее 0,08 солнечных. Объект обладает промежуточными физическими характеристиками между планетой и звездой. Он никогда не превратится в полноценную звезду, а будет сжиматься и тускнеть.';
-    case 'low': return 'маломассивная звезда - меньше 1 солнечной массы.';
+    case 'low': return 'маломассивная звезда — меньше 1 солнечной массы.';
     case 'rs': return 'переменная звезда типа RS Гончих Псов.';
     case 'ecl': return 'затменно-переменная звезда.';
     case 'pec': return 'пекулярная звезда. Такие звёзды отличаются от обычных звёзд того же спектрального класса некоторыми существенными особенностями в спектрах, а иногда и другими свойствами.';
@@ -165,34 +162,27 @@ function displayLuminosity(luminosity){
 function displayResult(){
   document.querySelector('.result').style.display='block';
   document.querySelector('.nextresult').style.display='block';
+  
   if(document.querySelector('section').style.opacity==0){
     document.querySelector('section').style.opacity=1;
-    document.querySelector('section').style.transition='opacity 1s ease-in';
+    document.querySelector('section').style.transition='opacity 1s linear';
   }
-  else {
-    document.querySelector('section').style.opacity=0;
-    document.querySelector('section').style.transition='opacity 1s ease-in';
-  }
+  console.log(starData[0])
   document.querySelector('.result').innerHTML=(
     `Прямо сейчас фотоны света, которые прилетают к нам от звезды <span class='nowrap'><b>${birthdayStar.id}</b></span>, почти такого же возраста, как ты! Они покинули звезду немного раньше момента твоего рождения и только сейчас достигли Земли.<br>
     ${isVisible(birthdayStar)}<br><br>
     Эта ${displaySpectral(birthdayStar.spec)} звезда${displayLuminosity(birthdayStar.spec)} ${birthdayStar.spec=='~'?'':('спектрального класса <b>'+birthdayStar.spec)}</b> находится на расстоянии<b> ${birthdayStar.dist} </b>световых лет от Земли.<br>
     Из открытых она занимает <b>${listPosition}-е</b> место по удалённости от Земли. <br>
-    Информация о звезде ${birthdayStar.type=='Star'? '':(`<b>${birthdayStar.id}</b>: ${displayType(birthdayStar)}<br>`)}<br>
+    ${birthdayStar.type=='Star'? '':(`<b>${birthdayStar.id}</b> — ${displayType(birthdayStar)}<br>`)}<br>
     Координаты в небе:<br>
     Прямое восхождение: <b>${birthdayStar.x}\xB0</b><br>
     Склонение: <b>${birthdayStar.y}\xB0</b>`
     );
+
     var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:0.5, target: birthdayStar.id});
     let nextBirthday = new Date(birth);
     let nextDate = new Date(nextBirthday.getTime()+nextStar.dist*365.25*24*3600*1000);
     document.querySelector('.nextresult').innerHTML=`Твой следующий звёздный день рождения состоится для звезды <b><span class='nowrap'>"${nextStar.id}"</span></b> и случится это <b>${nextDate.getDate()} ${months[nextDate.getMonth()]} ${nextDate.getFullYear()} года!</b>`;
-
-
 }
 
 btn.addEventListener('click', currentAge);
-
-/*let pointer = document.querySelector('.pointer');
-pointer.style.left = ((180/360*100)-2.5)*1.0+'%';
-pointer.style.top = ((75/180*100)-5)*0.98+'%';*/
