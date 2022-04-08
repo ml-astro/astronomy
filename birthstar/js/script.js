@@ -17,6 +17,7 @@ let birthdayStar;
 let birth;
 let listPosition;
 
+//stupid fucking bullshit i havent learn to do properly
 function getData(url) {
     const request = new XMLHttpRequest();
     request.open('GET', url);
@@ -203,7 +204,6 @@ function displayResult(){
 //return the proper name of star based on it's catalogue name
 function starProperName(star){
   let nameString = star;
-  console.log(nameString==birthdayStar.id);
   for(let key in starNameList){
     if(birthdayStar.id == starNameList[key].id){
       return starNameList[key].name;
