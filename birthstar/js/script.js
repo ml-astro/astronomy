@@ -1,23 +1,28 @@
-//fade out when new date
-//display russian names
-//if sun only, then do not query aladin
-
 const stars = './js/stars.json';
 const constellations = './js/constellations.json';
 const greek = './js/greek.json';
 const starNames = './js/starnames.json';
 const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря',];
 const btn = document.querySelector('button');
+//stars.json data
 let starData;
+//constellations.json data
 let constellationNames;
+//greek.json data
 let greekLetters;
+//starnames.json data
 let starNameList;
+
 let age;
+
+//current birthday star object
 let birthdayStar;
+//birth date
 let birth;
+//n-th star from earth by distance
 let listPosition;
 
-//stupid fucking bullshit i havent learn to do properly
+//stupid fucking bullshit i havent learned to do properly. "return" did not work because im an idiot
 function getData(url) {
     const request = new XMLHttpRequest();
     request.open('GET', url);
@@ -37,7 +42,7 @@ function getData(url) {
     };
     request.send();
 }
-
+//more shit like before
 getData(stars);
 getData(constellations);
 getData(greek);
@@ -46,19 +51,22 @@ getData(starNames);
 //calculates person's age
 function currentAge(){
   birth = document.getElementById('birthdate').value;
-  //check if date is in the future
+  //checks if date is set
   if(birth){
     if((new Date(document.getElementById('birthdate').value)) < new Date()){
       let birthday = new Date(document.getElementById('birthdate').value);
+      
       let today = new Date();
       age = (today - birthday)/(1000*3600*24*365.25);
       if(age<=110){
         calculateBirthdayStar();
       }
-      else {document.querySelector('.result').innerHTML='Возраст слишком большой.';}
+      else {document.querySelector('.result').innerHTML=`Возраст слишком большой. Доступен год от ${new Date().getFullYear()-111}`;}
     }
     }
 }
+
+btn.addEventListener('click', currentAge);
 
 //searches for previous birthdaystar and the next one
 function calculateBirthdayStar(){
@@ -68,7 +76,7 @@ function calculateBirthdayStar(){
       birthdayStar = starData[i];
       listPosition = i+1;
     } else {
-      //if previous star is closer, then this star is the next birthdaystar
+      //if previous star is closer, then current star is the next birthdaystar
       nextStar=(starData[i]);
       displayResult();
       break;
@@ -76,7 +84,7 @@ function calculateBirthdayStar(){
   }
 }
 
-//is the star visible to naked eye
+//is this a naked eye star
 function isVisible(star){
   if(star.mag<6){
     return `Её яркость <b>${star.mag}</b> и сейчас она видна такой, какой была при твоём рождении!`;
@@ -147,7 +155,7 @@ function displaySpectral(spectral){
     }
 }
 
-//displays luminosity
+//displays luminosity class
 function displayLuminosity(luminosity){
   switch(true){
     case (luminosity.includes('0')):
@@ -194,14 +202,16 @@ function displayResult(){
     Прямое восхождение: <b>${birthdayStar.x}\xB0</b><br>
     Склонение: <b>${birthdayStar.y}\xB0</b>`
     );
-
-    var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:0.5, target: birthdayStar.id});
+    if(birthdayStar.id != 'Солнце'){
+      var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:0.5, target: birthdayStar.id});
+    }
+    
     let nextBirthday = new Date(birth);
     let nextDate = new Date(nextBirthday.getTime()+nextStar.dist*365.25*24*3600*1000);
     document.querySelector('.nextresult').innerHTML=`Твой следующий звёздный день рождения состоится для звезды <b><span class='nowrap'>"${starProperName(nextStar.id)}"</span></b> и случится это <b>${nextDate.getDate()} ${months[nextDate.getMonth()]} ${nextDate.getFullYear()} года!</b>`;
 }
 
-//return the proper name of star based on it's catalogue name
+//returns the proper name based on star's catalogue name
 function starProperName(star){
   let nameString = star;
   for(let key in starNameList){
@@ -223,5 +233,3 @@ function starProperName(star){
   }
   return nameString;
 }
-
-btn.addEventListener('click', currentAge);
