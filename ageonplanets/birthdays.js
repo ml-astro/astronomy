@@ -42,33 +42,33 @@ function ageFormat (age){
 }
 
 function currentAge (){
-    let birthday = new Date(document.getElementById('birthdate').value)
+    let birthday = new Date(document.querySelector('#birthdate').value)
     let today = new Date()
     let range = today - birthday
     planets.forEach((period, planet) => {
-        document.getElementById(planet+'Age').innerHTML='<b>'+ageFormat(Math.floor(range/(period*1000)))+'</b>'
+        document.querySelector('#'+planet+'Age').innerHTML='<b>'+ageFormat(Math.floor(range/(period*1000)))+'</b>'
     })
 }
 
 function nextDate (){
-    let birthday = new Date(document.getElementById('birthdate').value)
+    let birthday = new Date(document.querySelector('#birthdate').value)
     let today = new Date()
     let nextBday = new Date (birthday)
     planets.forEach((period,planet)=>{
         while (today > nextBday){
             nextBday =  new Date (nextBday.setSeconds(nextBday.getSeconds()+period))
         }
-        document.getElementById(planet+'BD').innerHTML='<b>'+nextBday.getDate()+' '+months[(nextBday.getMonth())]+' '+nextBday.getFullYear()+'&nbsp;года</b>'
+        document.querySelector('#'+planet+'BD').innerHTML='<b>'+nextBday.getDate()+' '+months[(nextBday.getMonth())]+' '+nextBday.getFullYear()+'&nbsp;года</b>'
         nextBday = new Date (birthday)
     })
     
 }
 
 function calculate(){
-    if(document.getElementById('birthdate').value){
+    if(document.querySelector('#birthdate').value){
         currentAge()
         nextDate()
-        document.getElementById('unhide').style.display='initial'
+        document.querySelector('#unhide').style.display='initial'
     }
 
 }
