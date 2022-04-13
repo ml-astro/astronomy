@@ -87,13 +87,14 @@ function calculateBirthdayStar(){
 
 //is this a naked eye star
 function isVisible(star){
-  if(star.mag<6){
-    return `Её яркость <b>${star.mag}</b> и сейчас она видна такой, какой была при твоём рождении!`;
+  let mag = Math.floor(star.mag*10)/10;
+  if(mag<=6){
+    return `Её яркость <b>${mag}</b> и сейчас она видна такой, какой была при твоём рождении!`;
   }
-  else if(star.mag == '~') {
+  else if(mag == '~') {
     return 'Она не видна невооружённым глазом, но в телескоп сейчас выглядит так, как при твоём рождении!';}
   else {
-    return `Её яркость <b>${star.mag}</b>, поэтому она не видна невооружённым глазом, но в телескоп сейчас выглядит так, как при твоём рождении!`;
+    return `Её яркость <b>${mag}</b>, поэтому она не видна невооружённым глазом, но в телескоп сейчас выглядит так, как при твоём рождении!`;
   }
 }
 
@@ -195,7 +196,7 @@ function displayResult(){
   document.querySelector('.result').innerHTML=(
     `Прямо сейчас фотоны света, которые прилетают к нам от звезды <span class='nowrap'><b>${properName}</b></span>, почти такого же возраста, как ты! Они покинули звезду немного раньше момента твоего рождения и только сейчас достигли Земли.<br>
     ${isVisible(birthdayStar)}<br><br>
-    Эта ${displaySpectral(birthdayStar.spec)} звезда${displayLuminosity(birthdayStar.spec)} ${birthdayStar.spec=='~'?'':('спектрального класса <b>'+birthdayStar.spec)}</b> находится на расстоянии<b> ${birthdayStar.dist} </b>световых лет от Земли.<br>
+    Эта ${displaySpectral(birthdayStar.spec)} звезда${displayLuminosity(birthdayStar.spec)} ${birthdayStar.spec=='~'?'':('спектрального класса <b>'+birthdayStar.spec)}</b> находится на расстоянии<b> ${Math.floor(birthdayStar.dist*100)/100} </b>световых лет от Земли.<br>
     Из открытых она занимает <b>${listPosition}-е</b> место по удалённости от Земли. <br>
     ${birthdayStar.type=='Star'? '':(`<b>${properName}</b> — ${displayType(birthdayStar)}<br>`)}
     Название по каталогу: ${birthdayStar.id}.<br><br>
