@@ -6,7 +6,7 @@
 }
 
 body {
-	background: url("view.jpg") no-repeat fixed center top;
+	background: url("./view.jpg") no-repeat fixed center top;
 	color:#FFF;
 }
 
