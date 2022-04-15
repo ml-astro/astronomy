@@ -13,8 +13,11 @@ let greekLetters;
 //starnames.json data
 let starNameList;
 
+fetch(greek).then(res => res.json()).then(data => greekLetters = data);
+fetch(constellations).then(res => res.json()).then(data => constellationNames = data);
+fetch(starNames).then(res => res.json()).then(data => starNameList = data);
+fetch(stars).then(res => res.json()).then(data => starData = data);
 let age;
-
 //current birthday star object
 let birthdayStar;
 //birth date
@@ -22,32 +25,6 @@ let birth;
 //n-th star from earth by distance
 let listPosition;
 
-//stupid fucking bullshit i havent learned to do properly. "return" did not work because im an idiot
-function getData(url) {
-    var request = new XMLHttpRequest();
-    request.open('GET', url);
-    request.responseType = 'json';
-    request.onload = () => {
-      if(request.status === 200 && request.readyState === 4) {
-        data = request.response;
-        if(url=='./js/stars.json'){
-          starData = data;
-        } else if(url=='./js/constellations.json') {
-          constellationNames = data;
-        } else if(url=='./js/greek.json') {
-          greekLetters = data;
-        } else {
-          starNameList = data;
-        }
-      }
-    };
-    request.send();
-}
-//more shit like before
-getData(stars);
-getData(constellations);
-getData(greek);
-getData(starNames);
 
 //calculates person's age
 function currentAge(){
@@ -56,7 +33,6 @@ function currentAge(){
   if(birth){
     if((new Date(document.getElementById('birthdate').value)) < new Date()){
       let birthday = new Date(document.getElementById('birthdate').value);
-      
       let today = new Date();
       age = (today - birthday)/(1000*3600*24*365.25);
       if(age<=110){
