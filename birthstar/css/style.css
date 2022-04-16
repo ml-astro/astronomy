@@ -47,12 +47,13 @@ button {
   font-size: 1.15em;
   font-weight: bold;
   display: block;
-  padding: 1em;
+  padding: .5em;
   color: #074473;
   background-color: white;
   border: none;
   border-radius: 5px;
   margin: auto;
+  margin-top: .3em;
 }
 
 button:hover {
