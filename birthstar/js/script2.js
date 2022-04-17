@@ -72,7 +72,7 @@ btn.addEventListener('click', currentAge);
 //searches for previous birthdaystar and the next one
 function calculateBirthdayStar(){
   for(let i=0; i<starData.length; i++){
-    if(starData[i].dist < age){
+    if(starData[i].d < age){
       //while the distance is lower, then its considered as the last birthdaystar
       birthdayStar = starData[i];
       listPosition = i+1;
@@ -87,20 +87,21 @@ function calculateBirthdayStar(){
 
 //is this a naked eye star
 function isVisible(star){
-  let mag = Math.floor(star.mag*10)/10;
+  let mag = Math.floor(star.m*10)/10;
   if(mag<=6){
     return `Её яркость <b>${mag}</b> и сейчас она видна такой, какой была при твоём рождении!`;
   }
-  else if(mag == '~') {
-    return 'Она не видна невооружённым глазом, но в телескоп сейчас выглядит так, как при твоём рождении!';}
-  else {
+  else if(mag > 6) {
     return `Её яркость <b>${mag}</b>, поэтому она не видна невооружённым глазом, но в телескоп сейчас выглядит так, как при твоём рождении!`;
+  }
+  else {
+    return 'Она не видна невооружённым глазом, но в телескоп сейчас выглядит так, как при твоём рождении!';
   }
 }
 
 //displays text about the type of star
 function displayType(star){
-  switch(star.type){
+  switch(star.t){
     case 'pm': return 'звезда с большим собственным движением.';
     case 'ev': return 'эруптивная звезда с большими изменениями блеска из-за происходящих на ней взрывных процессов.';
     case 'by': return 'переменная звезда типа "BY Дракона". Её блеск изменяется из-за вращения, поскольку на поверхности находятся большие пятна; а также из-за хромосферной активности.';
@@ -188,7 +189,7 @@ function displayLuminosity(luminosity){
 function displayResult(){
   document.querySelector('.result').style.display='block';
   document.querySelector('.nextresult').style.display='block';
-  let properName = starProperName(birthdayStar.id);
+  let properName = starProperName(birthdayStar.i);
   if(document.querySelector('section').style.opacity==0){
     document.querySelector('section').style.opacity=1;
     document.querySelector('section').style.transition='opacity 1s linear';
@@ -196,28 +197,28 @@ function displayResult(){
   document.querySelector('.result').innerHTML=(
     `Прямо сейчас фотоны света, которые прилетают к нам от звезды <span class='nowrap'><b>${properName}</b></span>, почти такого же возраста, как ты! Они покинули звезду немного раньше момента твоего рождения и только сейчас достигли Земли.<br>
     ${isVisible(birthdayStar)}<br><br>
-    Эта ${displaySpectral(birthdayStar.spec)} звезда${displayLuminosity(birthdayStar.spec)} ${birthdayStar.spec=='~'?'':('спектрального класса <b>'+birthdayStar.spec)}</b> находится на расстоянии<b> ${Math.floor(birthdayStar.dist*100)/100} </b>световых лет от Земли.<br>
+    Эта ${displaySpectral(birthdayStar.s)} звезда${displayLuminosity(birthdayStar.s)} ${birthdayStar.s=='~'?'':('спектрального класса <b>'+birthdayStar.s)}</b> находится на расстоянии<b> ${Math.floor(birthdayStar.d*100)/100} </b>световых лет от Земли.<br>
     Из открытых она занимает <b>${listPosition}-е</b> место по удалённости от Земли. <br>
-    ${birthdayStar.type=='Star'? '':(`<b>${properName}</b> — ${displayType(birthdayStar)}<br>`)}
-    Название по каталогу: ${birthdayStar.id}.<br><br>
+    ${birthdayStar.t=='Star'? '':(`<b>${properName}</b> — ${displayType(birthdayStar)}<br>`)}
+    Название по каталогу: ${birthdayStar.i}.<br><br>
     Координаты в небе:<br>
     Прямое восхождение: <b>${birthdayStar.x}\xB0</b><br>
     Склонение: <b>${birthdayStar.y}\xB0</b>`
     );
-    if(birthdayStar.id != 'Солнце'){
-      var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:0.5, target: birthdayStar.id});
+    if(birthdayStar.i != 'Солнце'){
+      var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:0.5, target: birthdayStar.i});
     }
     
     let nextBirthday = new Date(birth);
-    let nextDate = new Date(nextBirthday.getTime()+nextStar.dist*365.25*24*3600*1000);
-    document.querySelector('.nextresult').innerHTML=`Твой следующий звёздный день рождения состоится для звезды <b><span class='nowrap'>"${starProperName(nextStar.id)}"</span></b> и случится это <b>${nextDate.getDate()} ${months[nextDate.getMonth()]} ${nextDate.getFullYear()} года!</b>`;
+    let nextDate = new Date(nextBirthday.getTime()+nextStar.d*365.25*24*3600*1000);
+    document.querySelector('.nextresult').innerHTML=`Твой следующий звёздный день рождения состоится для звезды <b><span class='nowrap'>"${starProperName(nextStar.i)}"</span></b> и случится это <b>${nextDate.getDate()} ${months[nextDate.getMonth()]} ${nextDate.getFullYear()} года!</b>`;
 }
 
 //returns the proper name based on star's catalogue name
 function starProperName(star){
   let nameString = star;
   for(let key in starNameList){
-    if(birthdayStar.id == starNameList[key].id){
+    if(birthdayStar.i == starNameList[key].i){
       return starNameList[key].name;
     }
   }

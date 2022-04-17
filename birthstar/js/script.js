@@ -164,6 +164,7 @@ function displayLuminosity(luminosity){
 //displays all star info
 function displayResult(){
   document.querySelector('.result').style.display='block';
+  document.querySelector('h1').style.marginBottom='1.5em';
   document.querySelector('.nextresult').style.display='block';
   let properName = starProperName(birthdayStar.i);
   if(document.querySelector('section').style.opacity==0){
