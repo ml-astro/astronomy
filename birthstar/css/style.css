@@ -48,8 +48,8 @@ button {
   font-weight: bold;
   display: block;
   padding: .5em;
-  color: #074473;
-  background-color: white;
+  color: white;
+  background-color: #1F8DFF;
   border: none;
   border-radius: 5px;
   margin: auto;
