@@ -28,19 +28,21 @@ p {
 
 .button {
     display: inline-block;
-    border: 1px solid #66FCF1;
-    background-color: #1F2833;
+    background-color: #62A3EE;
     margin: auto;
     width: 200px;
     text-align: center;
     font-size: 130%;
+    font-weight: bolder;
+    color: black;
+    border-radius: 5px;
 }
 
 form {
     display: inline-block;
     text-align: center;
     line-height: 250%;
-    background-color: #1b1b1b;
+    background-color: #10100D;
     border-radius: 5%;
     padding: 20px;
 }
@@ -52,10 +54,6 @@ form {
 
 form input, form label {
     height: 200%;
-}
-
-.button {
-    border-radius: 5px;
 }
 
 #unhide {
@@ -83,7 +81,7 @@ td p {
 }
 
 tr {
-    background:rgba(60,60,60,.9);
+    background:#22221E;
 }
 
 td:nth-child(1){
@@ -92,7 +90,7 @@ td:nth-child(1){
 }
 
 tr:nth-child(even){
-    background:#1b1b1b;
+    background:#0E0E0C;
 }
 
 
