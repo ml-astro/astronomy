@@ -1,11 +1,13 @@
 const stars = './js/stars.json';
 const constellations = './js/constellations.json';
 const greek = './js/greek.json';
+const exo = './js/exo.json';
 const starNames = './js/starnames.json';
 const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря',];
 const btn = document.querySelector('button');
 //stars.json data
 let starData;
+let exoplanets;
 //constellations.json data
 let constellationNames;
 //greek.json data
@@ -17,6 +19,8 @@ fetch(greek).then(res => res.json()).then(data => greekLetters = data);
 fetch(constellations).then(res => res.json()).then(data => constellationNames = data);
 fetch(starNames).then(res => res.json()).then(data => starNameList = data);
 fetch(stars).then(res => res.json()).then(data => starData = data);
+fetch(exo).then(res => res.json()).then(data => exoplanets = data);
+
 let age;
 //current birthday star object
 let birthdayStar;
@@ -161,6 +165,28 @@ function displayLuminosity(luminosity){
   }
 }
 
+//displays exoplanets if present
+function getExoplanets(star){
+  let system = [];
+  let systemInfo = '';
+  //optimize loop -- stop iteration when all planets have been found
+  for (let i = 0; i < exoplanets.length; i++){
+    if(exoplanets[i].n == star.i){
+      system.push(exoplanets[i]);
+    }
+  }
+  //in case if there are planets, draw table
+  if(system.length > 0){
+    systemInfo +=`<br><b>У этой звезды есть экзопланеты:</b> <br><div class='tablecontainer'><table>
+    <tr><th>#</th><th>Расстояние от звезды</th><th>Масса</th><th>Радиус</th><th>Период обращения</th></tr>`
+    for(let i = 0; i<system.length; i++){
+      systemInfo += `<tr><th>${i+1}</th><td>${Math.floor(system[i].au*1500)/10} млн км</td><td>${system[i].m?`${system[i].m*318} масс Земли`:'?'}</td><td>${system[i].r?`${system[i].r*70} тыс км`:'?'}</td><td>${system[i].t} суток</td></tr>`
+    }
+    systemInfo +=`</table></div><br>`
+  }
+  return systemInfo;
+}
+
 //displays all star info
 function displayResult(){
   document.querySelector('.result').style.display='block';
@@ -177,6 +203,7 @@ function displayResult(){
     Эта ${displaySpectral(birthdayStar.s)} звезда${displayLuminosity(birthdayStar.s)} ${birthdayStar.s=='~'?'':('спектрального класса <b>'+birthdayStar.s)}</b> находится на расстоянии<b> ${Math.floor(birthdayStar.d*100)/100} </b>световых лет от Земли.<br>
     Из открытых она занимает <b>${listPosition}-е</b> место по удалённости от Земли. <br>
     ${birthdayStar.t=='Star'? '':(`<b>${properName}</b> — ${displayType(birthdayStar)}<br>`)}
+    ${getExoplanets(birthdayStar)}
     Название по каталогу: ${birthdayStar.i}.<br><br>
     Координаты в небе:<br>
     Прямое восхождение: <b>${birthdayStar.x}\xB0</b><br>

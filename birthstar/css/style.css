@@ -27,7 +27,19 @@ form p {
   margin-bottom: 20px;
 }
 
+td, th {
+  text-align: center;
+  border: 1px solid wheat;
+}
 
+table {
+  width: 100%;
+  font-size: .8em;
+}
+
+.tablecontainer {
+  overflow: auto;
+}
 
 h1, p {
   color: white;
@@ -120,7 +132,7 @@ input {
 
 @media (min-width: 568px) {
   main {
-    width: 65%;
+    width: 95%;
   }
   form {
     width: 70%;
@@ -133,11 +145,25 @@ input {
 
 @media (min-width: 768px) {
   main {
-    width: 70%;
+    width: 80%;
     max-width: 900px;
   }  
 
   label {
     width: 30%;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    width: 60%;
+    max-width: 900px;
+  }  
+}
+
+
+@media (max-width: 567px) {
+  main {
+    width: 100%;
   }
 }
