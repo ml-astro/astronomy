@@ -1,7 +1,7 @@
 //first new moon of 2022
 let newMoon = new Date('2022-01-02T22:33:00').getTime();
 let now = new Date().getTime();
-//let now = new Date('2022-06-11T12:33:00').getTime();
+//let now = new Date('2022-12-30T02:33:00').getTime();
 let timeSpan = now-newMoon;
 let synodic = 29.530588853*864e5;
 let month = (timeSpan%synodic)/synodic;
@@ -64,16 +64,16 @@ document.querySelector('p span').innerHTML = `${phase}%<br>${phaseName}`;
 //draw moons
 switch (true){
     case angle < 90:
-        drawMoon('#EEE','#555','#555',100-phase*2,100,-1);
+        drawMoon('#EEE','#2a303a','#2a303a',100-phase*2,100,-1);
         break;
     case angle < 180:
-        drawMoon('#EEE','#555','#EEE',100,(phase-50)*2,1);
+        drawMoon('#EEE','#2a303a','#EEE',100,(phase-50)*2,1);
         break;
     case angle < 270:
-        drawMoon('#555','#EEE','#EEE',(phase-50)*2,100,-1);
+        drawMoon('#2a303a','#EEE','#EEE',(phase-50)*2,100,-1);
         break;
     case angle <= 360:
-        drawMoon('#555','#EEE','#555',100,100-phase*2,1);
+        drawMoon('#2a303a','#EEE','#2a303a',100,100-phase*2,1);
         break;
 }
 
