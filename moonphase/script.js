@@ -6,7 +6,7 @@ let L = (218.316 + 13.176396*(interval))%360;
 let M = (134.963 + 13.064993*(interval))%360;
 let moonLongitude = L + 6.289 * Math.sin(M*0.0174533);
 let equinox = new Date(Date.UTC(2022,2,20,15,33,0)).getTime();
-let sunLongitude = ((today - equinox)/86400000)/365*360;
+let sunLongitude = ((today - equinox)/86400000)/365.256*360;
 let angle = moonLongitude - sunLongitude;
 if(angle < 0){
     //not sure if this is right
