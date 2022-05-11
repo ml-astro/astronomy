@@ -1,11 +1,11 @@
 ///algorithm from https://www.aa.quae.nl/en/reken/hemelpositie.html#4
-let day0 = new Date('2000-01-01T12:00:00').getTime();
+let day0 = new Date(Date.UTC(2000,0,1,12,0,0)).getTime();
 let today = new Date().getTime();
 let interval = (today - day0)/86400000;
 let L = (218.316 + 13.176396*(interval))%360;
 let M = (134.963 + 13.064993*(interval))%360;
 let moonLongitude = L + 6.289 * Math.sin(M*0.0174533);
-let equinox = new Date('2022-03-20T15:33:00').getTime();
+let equinox = new Date(Date.UTC(2022,2,20,15,33,0)).getTime();
 let sunLongitude = ((today - equinox)/86400000)/365*360;
 let angle = moonLongitude - sunLongitude;
 if(angle < 0){
