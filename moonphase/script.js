@@ -1,3 +1,21 @@
+/////////new algorithm
+let day0 = new Date('2000-01-01T12:00:00').getTime();
+let today = new Date().getTime();
+let interval = (today - day0)/86400000;
+let L = (218.316 + 13.176396*(interval))%360;
+let M = (134.963 + 13.064993*(interval))%360;
+let moonLambda = L + 6.289 * Math.sin(M*0.0174533);
+let equinox = new Date('2022-03-20T15:33:00').getTime();
+let sunLambda = ((today - equinox)/86400000)/365*360;
+let angle = moonLambda - sunLambda;
+if(angle < 0){
+    //not sure if this is right
+    angle += 360;
+}
+///end of new algorithm
+
+
+/*old algorithm
 //first new moon of 2022
 let newMoon = new Date('2022-01-02T22:33:00').getTime();
 let now = new Date().getTime();
@@ -8,6 +26,8 @@ let month = (timeSpan%synodic)/synodic;
 let angle = (month*360);
 let phase;
 let phaseName;
+*/
+
 
 //display phase name
 switch (true) {
