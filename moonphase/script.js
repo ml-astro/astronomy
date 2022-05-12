@@ -1,6 +1,11 @@
-///algorithm from https://www.aa.quae.nl/en/reken/hemelpositie.html#4
+///algorithm for the moon longitude from https://www.aa.quae.nl/en/reken/hemelpositie.html#4
+
 let day0 = new Date(Date.UTC(2000,0,1,12,0,0)).getTime();
 let today = new Date().getTime();
+let now = new Date();
+const paragraph = document.querySelector('.date');
+paragraph.innerHTML+=`${now.toLocaleDateString()} ${now.getHours()}:${now.getMinutes()<10?('0'+now.getMinutes()):now.getMinutes()}`;
+
 let interval = (today - day0)/86400000;
 let L = (218.316 + 13.176396*(interval))%360;
 let M = (134.963 + 13.064993*(interval))%360;
@@ -44,6 +49,7 @@ switch (true) {
         break;
 }
 
+//calculating the phase
 switch(true){
     case angle < 90:
         //(R-b)/2R
@@ -66,7 +72,23 @@ switch(true){
         phase = Math.round(((1-Math.cos((360-angle)*0.0174533))/2)*100);
         break;
 }
-document.querySelector('p span').innerHTML = `${phase}%<br>${phaseName}`;
+
+//display the info
+document.querySelector('.description').innerHTML=`
+Луна освещена на ${phase}%`;
+document.querySelector('.phase').innerHTML = `Фаза: <b>${phaseName}</b>`;
+
+/*
+//will implement sometime later
+var canvas = document.getElementById("canvas"),
+    ctx = canvas.getContext("2d");
+var background = new Image();
+background.src = "./moon.png";
+// Make sure the image is loaded first otherwise nothing will draw.
+background.onload = function(){
+    ctx.drawImage(background,0,0);
+    // Draw whatever else over top of it on the canvas.
+}*/
 
 //draw moons
 switch (true){
