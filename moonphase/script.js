@@ -76,7 +76,7 @@ switch(true){
 //display the info
 document.querySelector('.description').innerHTML=`
 Луна освещена на ${phase}%`;
-document.querySelector('.phase').innerHTML = `Фаза: <b>${phaseName}</b>`;
+document.querySelector('.phase').innerHTML = `<b>${phaseName}</b>`;
 
 /*
 //will implement sometime later
