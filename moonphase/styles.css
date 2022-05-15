@@ -70,12 +70,15 @@ footer {
   }
 
 @media (max-height: 780px) {
+    body {
+        height: initial;
+    }
     canvas {
         margin-top: 1em;
     }
     footer {
         margin-top: 3em;
         position: relative;
-        background-color: rgb(17, 19, 23);
+        
     }
   }
