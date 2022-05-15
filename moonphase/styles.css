@@ -44,3 +44,11 @@ footer {
         margin-top: 10vh;
     }
   }
+
+@media (max-height: 600px) {
+    footer {
+        margin-top: 2em;
+        position: relative;
+        line-height: 2vh;
+    }
+  }
