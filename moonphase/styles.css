@@ -3,9 +3,11 @@
     margin: 0;
 }
 
+
 body {
     font-family: Verdana,Tahoma, sans-serif;
     background-color: #16191e;
+    font-size: 16px;
 }
 
 canvas, p {
@@ -21,7 +23,11 @@ canvas {
 h1, p, h2, li {
     text-align: center;
     color: white;
-    margin: 2vh auto;
+    margin: 1em auto;
+}
+
+h1 {
+    font-size: 1.4em;
 }
 
 img {
@@ -35,22 +41,28 @@ ul {
   padding-top: 1em;
 }
 
+.phase {
+    font-size: 1.4em;
+}
+
 footer {
-    line-height: 1vh;
     text-align: center;
     position: absolute;
-    font-size: 0.8em;
     bottom: 0;
     width: 100%;
   }
 
-@media (max-height: 700px) {
+  footer p, footer a {
+      font-size: 80%;
+  }
+
+@media (max-height: 760px) {
     canvas {
         margin-top: 1em;
     }
     footer {
-        margin-top: 2em;
+        margin-top: 3em;
         position: relative;
-        line-height: 2vh;
+
     }
   }
