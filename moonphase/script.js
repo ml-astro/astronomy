@@ -127,10 +127,10 @@ function getPhaseName(phaseAngle){
         case phaseAngle < 100:
             moonName = 'Первая четверть';
             break;
-        case phaseAngle < 170:
+        case phaseAngle < 160:
             moonName = 'Растущая Луна';
             break;
-        case phaseAngle < 190:
+        case phaseAngle < 200:
             moonName = 'Полнолуние';
             break;
         case phaseAngle < 260:
