@@ -13,10 +13,21 @@ canvas, p {
     margin: 0 auto;
 }
 
-h1, p, h2 {
+h1, p, h2, li {
     text-align: center;
     color: white;
     margin: 2vh auto;
+}
+
+img {
+    width: 1em;
+    margin-right: 1em;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  padding-top: 1em;
 }
 
 footer {
