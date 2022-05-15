@@ -8,7 +8,7 @@ paragraph.innerHTML+=`${now.toLocaleDateString()} ${now.getHours()}:${now.getMin
 
 //variables for the current moonphase calculation
 const day0 = new Date(Date.UTC(2000,0,1,12,0,0)).getTime();
-//const today = new Date(Date.UTC(2022,4,14,12,0,0)).getTime();
+//const today = new Date(Date.UTC(2022,4,5,12,0,0)).getTime();
 const today = new Date().getTime();
 const interval = (today - day0)/86400000;
 let angle = getMoonAngle(interval,today);
@@ -174,6 +174,15 @@ switch(true){
 document.querySelector('.description').innerHTML=`
 Луна освещена на ${phase}%`;
 document.querySelector('.phase').innerHTML = `<b>${getPhaseName(angle)}</b>`;
+
+
+//rgb(42, 50, 58) inside 25 31 35
+//rgb(17, 19, 23) outside
+let red = (17+(phase/100)*25);
+let green = (19+(phase/100)*31);
+let blue = (23+(phase/100)*35);
+document.querySelector('body').style.background = `radial-gradient(circle at 50% 250px, rgb(${red},${green},${blue}) 10%,rgb(17, 19, 23) 60%`;
+
 
 document.querySelector('.forecast').innerHTML+='<ul>'
 for(i=0; i<forecast.length; i++){
