@@ -11,6 +11,11 @@ body {
 canvas, p {
     display: block;
     margin: 0 auto;
+    margin-top: 1em;
+}
+
+canvas {
+    margin-top: 5em;
 }
 
 h1, p, h2, li {
@@ -39,13 +44,10 @@ footer {
     width: 100%;
   }
 
-@media (min-height: 600px) {
-    canvas {
-        margin-top: 10vh;
-    }
-  }
-
 @media (max-height: 700px) {
+    canvas {
+        margin-top: 1em;
+    }
     footer {
         margin-top: 2em;
         position: relative;
