@@ -45,7 +45,7 @@ footer {
     }
   }
 
-@media (max-height: 600px) {
+@media (max-height: 700px) {
     footer {
         margin-top: 2em;
         position: relative;
