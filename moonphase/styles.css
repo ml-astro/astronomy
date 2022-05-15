@@ -76,6 +76,6 @@ footer {
     footer {
         margin-top: 3em;
         position: relative;
-
+        background-color: rgb(17, 19, 23);
     }
   }
