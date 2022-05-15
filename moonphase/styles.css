@@ -36,10 +36,23 @@ img {
 }
 
 ul {
-  list-style-type: none;
-  padding-left: 0;
-  padding-top: 1em;
+    width: 200px;
+    margin: 0 auto;
+    list-style-type: none;
+    padding-left: 0;
+    padding-top: 1em;
 }
+
+li {
+    padding: 15px 0px;
+    border-bottom: 1px solid #333;
+    margin: 0;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
 
 .phase {
     font-size: 1.4em;
@@ -56,7 +69,7 @@ footer {
       font-size: 80%;
   }
 
-@media (max-height: 760px) {
+@media (max-height: 780px) {
     canvas {
         margin-top: 1em;
     }
