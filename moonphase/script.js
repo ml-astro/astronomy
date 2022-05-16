@@ -8,7 +8,7 @@ paragraph.innerHTML+=`${now.toLocaleDateString()} ${now.getHours()}:${now.getMin
 
 //variables for the current moonphase calculation
 const day0 = new Date(Date.UTC(2000,0,1,12,0,0)).getTime();
-//const today = new Date(Date.UTC(2022,4,5,12,0,0)).getTime();
+//const today = new Date(Date.UTC(2022,7,5,12,0,0)).getTime();
 const today = new Date().getTime();
 const interval = (today - day0)/86400000;
 let angle = getMoonAngle(interval,today);
@@ -85,6 +85,7 @@ function makeForecast(){
         if(proximity > angularDifference){
             newComparisonAngle = getComparisonAngle(currentAngle-15);
             angularDifference = 90;
+            if(oldComparisonAngle == newComparisonAngle){newInterval+=5}
             forecast.push([intervalToDate(newBestDay),oldComparisonAngle])
         }
         let date = new Date(day0);
