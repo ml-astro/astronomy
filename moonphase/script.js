@@ -8,7 +8,7 @@ paragraph.innerHTML+=`${now.toLocaleDateString()} ${now.getHours()}:${now.getMin
 
 //variables for the current moonphase calculation
 const day0 = new Date(Date.UTC(2000,0,1,12,0,0)).getTime();
-//const today = new Date(Date.UTC(2022,8,1,12,0,0)).getTime();
+//const today = new Date(Date.UTC(2022,5,9,12,0,0)).getTime();
 const today = new Date().getTime();
 const interval = (today - day0)/86400000;
 let angle = getMoonAngle(interval,today);
@@ -24,7 +24,6 @@ function getMoonAngle(days,dayNow){
     let sunLongitude = ((dayNow - equinox)/86400000)/365.256*360;
     let angle = moonLongitude - sunLongitude;
     if(angle < 0){
-        //not sure if this is right
         angle += 360;
     }
     if(angle > 360){
@@ -181,9 +180,9 @@ document.querySelector('.phase').innerHTML = `<b>${getPhaseName(angle)}</b>`;
 
 //rgb(42, 50, 58) inside 25 31 35
 //rgb(17, 19, 23) outside
-let red = (17+(phase/100)*25);
-let green = (19+(phase/100)*31);
-let blue = (23+(phase/100)*35);
+let red = Math.floor(17+(phase/100)*25);
+let green = Math.floor(19+(phase/100)*31);
+let blue = Math.floor(23+(phase/100)*35);
 document.querySelector('body').style.background = `no-repeat center radial-gradient(circle at 50% 270px, rgb(${red},${green},${blue}) 10%,rgb(17, 19, 23) 60%`;
 
 
@@ -196,20 +195,21 @@ for(i=0; i<forecast.length; i++){
 }
 document.querySelector('.forecast').innerHTML+='</ul>'
 
+let moonNightColor = `${Math.floor(42-(25*((phase+1)/100)))},${Math.floor(48-(29*((phase+1)/100)))},${Math.floor(58-(35*((phase+1)/100)))}`;
 
 //draws moon phase
 switch (true){
     case angle < 90:
-        drawMoon('#EEE','#2a303a','#2a303a',100-phase*2,100,-1);
+        drawMoon('#EEE',`rgb(${moonNightColor})`,`rgb(${moonNightColor})`,100-phase*2,100,-1);
         break;
     case angle < 180:
-        drawMoon('#EEE','#2a303a','#EEE',100,(phase-50)*2,1);
+        drawMoon('#EEE',`rgb(${moonNightColor})`,'#EEE',100,(phase-50)*2,1);
         break;
     case angle < 270:
-        drawMoon('#2a303a','#EEE','#EEE',(phase-50)*2,100,-1);
+        drawMoon(`rgb(${moonNightColor})`,'#EEE','#EEE',(phase-50)*2,100,-1);
         break;
     case angle <= 360:
-        drawMoon('#2a303a','#EEE','#2a303a',100,100-phase*2,1);
+        drawMoon(`rgb(${moonNightColor})`,'#EEE',`rgb(${moonNightColor})`,100,100-phase*2,1);
         break;
 }
 
@@ -222,6 +222,7 @@ function drawMoon(color1,color2,color3,radius1,radius2,sign){
     ctx.beginPath();
     ctx.ellipse(100, 100, 100, 100, 0, 0, Math.PI*2);
     ctx.fill();
+    ctx.strokeStyle = `rgb(${moonNightColor})`;
     ctx.stroke();
 
     //ночная часть
@@ -229,11 +230,11 @@ function drawMoon(color1,color2,color3,radius1,radius2,sign){
     ctx.beginPath();
     ctx.ellipse(100, 100, 100, radius1, sign*Math.PI/2, 0, Math.PI);
     ctx.fill();
-    ctx.stroke();
+    //ctx.stroke();
 
     ctx.fillStyle = color3;
     ctx.beginPath();
     ctx.ellipse(100, 100, 100, radius2, Math.PI/2, 0, Math.PI);
     ctx.fill();
-    ctx.stroke();
+    //ctx.stroke();
 }
