@@ -8,11 +8,12 @@ paragraph.innerHTML+=`${now.toLocaleDateString()} ${now.getHours()}:${now.getMin
 
 //variables for the current moonphase calculation
 const day0 = new Date(Date.UTC(2000,0,1,12,0,0)).getTime();
-//const today = new Date(Date.UTC(2022,7,5,12,0,0)).getTime();
-const today = new Date().getTime();
+const today = new Date(Date.UTC(2022,8,1,12,0,0)).getTime();
+//const today = new Date().getTime();
 const interval = (today - day0)/86400000;
 let angle = getMoonAngle(interval,today);
 ////////////
+
 //calculates longitude for the provided day
 //returns angle difference between sun and moon (phase)
 function getMoonAngle(days,dayNow){
@@ -67,13 +68,14 @@ function makeForecast(){
         newInterval++;
         dateNow+=86400000;
         currentAngle = getMoonAngle(newInterval,(dateNow));
+
         //comparing to an angle a bit smaller
         //if the angle is less than 90, add 360 to do right comparison with the previous date which was almost 360
-        if(currentAngle<20){
+        if(currentAngle<12){
             currentAngle+=360
         }
 
-        newComparisonAngle = getComparisonAngle(currentAngle-15);
+        newComparisonAngle = getComparisonAngle(currentAngle-12);
         proximity = proximityToPhase(currentAngle);
 
         if(proximity < angularDifference) {
@@ -83,9 +85,9 @@ function makeForecast(){
             oldComparisonAngle = newComparisonAngle;
         }
         if(proximity > angularDifference){
-            newComparisonAngle = getComparisonAngle(currentAngle-15);
+            newComparisonAngle = getComparisonAngle(currentAngle-12);
             angularDifference = 90;
-            if(oldComparisonAngle == newComparisonAngle){newInterval+=5}
+            if(oldComparisonAngle == newComparisonAngle){newInterval}
             forecast.push([intervalToDate(newBestDay),oldComparisonAngle])
         }
         let date = new Date(day0);
