@@ -73,12 +73,11 @@ footer {
     body {
         height: initial;
     }
-    canvas {
+    /*canvas {
         margin-top: 1em;
-    }
+    }*/
     footer {
         margin-top: 3em;
         position: relative;
-        
     }
   }

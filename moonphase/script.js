@@ -184,7 +184,7 @@ document.querySelector('.phase').innerHTML = `<b>${getPhaseName(angle)}</b>`;
 let red = (17+(phase/100)*25);
 let green = (19+(phase/100)*31);
 let blue = (23+(phase/100)*35);
-document.querySelector('body').style.background = `no-repeat center radial-gradient(circle at 50% 10em, rgb(${red},${green},${blue}) 10%,rgb(17, 19, 23) 60%`;
+document.querySelector('body').style.background = `no-repeat center radial-gradient(circle at 50% 270px, rgb(${red},${green},${blue}) 10%,rgb(17, 19, 23) 60%`;
 
 
 document.querySelector('.forecast').innerHTML+='<ul>'
