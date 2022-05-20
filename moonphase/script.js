@@ -174,7 +174,7 @@ switch(true){
 
 //displays the description
 document.querySelector('.description').innerHTML=`
-Луна освещена на ${phase}%`;
+Диск Луны освещен на ${phase}%`;
 document.querySelector('.phase').innerHTML = `<b>${getPhaseName(angle)}</b>`;
 
 
