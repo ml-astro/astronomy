@@ -139,7 +139,7 @@ function getPhaseName(phaseAngle){
             moonName = 'Убывающая Луна';
             break;
         case phaseAngle < 280:
-            moonName = 'Последняя чеверть';
+            moonName = 'Последняя четверть';
             break;
         case phaseAngle < 350:
             moonName = 'Старая Луна';
