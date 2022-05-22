@@ -8,7 +8,7 @@ paragraph.innerHTML+=`${now.toLocaleDateString()} ${now.getHours()}:${now.getMin
 
 //variables for the current moonphase calculation
 const day0 = new Date(Date.UTC(2000,0,1,12,0,0)).getTime();
-//const today = new Date(Date.UTC(2022,5,9,12,0,0)).getTime();
+//const today = new Date(Date.UTC(2022,7,5,12,0,0)).getTime();
 const today = new Date().getTime();
 const interval = (today - day0)/86400000;
 let angle = getMoonAngle(interval,today);
@@ -57,8 +57,8 @@ function addLeadZero(number){
 
 //do the month forecast for moon phases
 function makeForecast(){
-    let dateNow = new Date (intervalToDate(Math.floor(interval))).getTime();
-    let forecast = []
+    let dateNow = new Date (intervalToDate(interval)).getTime();
+    let forecast = [];
     let newInterval = Math.floor(interval);
     let angularDifference = 90;
     let currentAngle, newBestDay, oldComparisonAngle, newComparisonAngle,proximity;
@@ -67,14 +67,15 @@ function makeForecast(){
         newInterval++;
         dateNow+=86400000;
         currentAngle = getMoonAngle(newInterval,(dateNow));
-
+        
         //comparing to an angle a bit smaller
         //if the angle is less than 90, add 360 to do right comparison with the previous date which was almost 360
-        if(currentAngle<12){
+        if(currentAngle<7){
             currentAngle+=360
         }
 
-        newComparisonAngle = getComparisonAngle(currentAngle-12);
+        newComparisonAngle = getComparisonAngle(currentAngle-7);
+
         proximity = proximityToPhase(currentAngle);
 
         if(proximity < angularDifference) {
@@ -84,7 +85,7 @@ function makeForecast(){
             oldComparisonAngle = newComparisonAngle;
         }
         if(proximity > angularDifference){
-            newComparisonAngle = getComparisonAngle(currentAngle-12);
+            newComparisonAngle = getComparisonAngle(currentAngle-7);
             angularDifference = 90;
             if(oldComparisonAngle == newComparisonAngle){newInterval}
             forecast.push([intervalToDate(newBestDay),oldComparisonAngle])
