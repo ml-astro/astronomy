@@ -187,14 +187,16 @@ let blue = Math.floor(23+(phase/100)*35);
 document.querySelector('body').style.background = `no-repeat center radial-gradient(circle at 50% 270px, rgb(${red},${green},${blue}) 10%,rgb(17, 19, 23) 60%`;
 
 
-document.querySelector('.forecast').innerHTML+='<ul>'
+const forecastDiv = document.querySelector('.forecast');
 for(i=0; i<forecast.length; i++){
     let date = new Date(forecast[i][0]).getDate();
     let month = new Date(forecast[i][0]).getMonth()+1;
     let year = new Date(forecast[i][0]).getFullYear();
-    document.querySelector('.forecast').innerHTML+=`<li><img src='${forecast[i][1]}.png'>${addLeadZero(date)}.${addLeadZero(month)}.${year}</li>`
+    let li = document.createElement('li');
+    li.innerHTML=`<li><img src='${forecast[i][1]}.png'>${addLeadZero(date)}.${addLeadZero(month)}.${year}</li>`;
+    forecastDiv.appendChild(li);
 }
-document.querySelector('.forecast').innerHTML+='</ul>'
+
 
 let moonNightColor = `${Math.floor(42-(25*((phase+1)/100)))},${Math.floor(48-(29*((phase+1)/100)))},${Math.floor(58-(35*((phase+1)/100)))}`;
 
