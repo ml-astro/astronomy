@@ -5,14 +5,46 @@ const now = new Date();
 const paragraph = document.querySelector('.date');
 paragraph.innerHTML+=`${now.toLocaleDateString()} ${now.getHours()}:${now.getMinutes()<10?('0'+now.getMinutes()):now.getMinutes()}`;
 ///////////////
+const equinox = getEquinoxDate().getTime();
 
 //variables for the current moonphase calculation
 const day0 = new Date(Date.UTC(2000,0,1,12,0,0)).getTime();
-//const today = new Date(Date.UTC(2022,7,5,12,0,0)).getTime();
 const today = new Date().getTime();
+//const today = new Date().getTime();
 const interval = (today - day0)/86400000;
 let angle = getMoonAngle(interval,today);
 ////////////
+
+function getEquinoxDate(){
+    let okEquinox = new Date(Date.UTC(2022,2,20,15,33,0)).getTime();
+    let newEquinox = okEquinox;
+    while(newEquinox < now.getTime()){
+        okEquinox = newEquinox;
+        newEquinox+=365.2425*864e5;
+    }
+    return new Date(okEquinox);
+}
+
+function fullMoonName(){
+    const name=[
+        'Волчья Луна',
+        'Снежная Луна',
+        'Штормовая Луна',
+        'Розовая Луна',
+        'Цветочная Луна',
+        'Клубничная Луна',
+        'Оленья Луна',
+        'Осетровая Луна',
+        'Урожайная Луна',
+        'Охотничья Луна',
+        'Бобровая Луна',
+        'Холодная Луна'
+    ];
+    if (now.getDate() > 29){
+        return 'Синяя Луна';
+    }
+    else return name[now.getMonth()];
+}
 
 //calculates longitude for the provided day
 //returns angle difference between sun and moon (phase)
@@ -20,7 +52,6 @@ function getMoonAngle(days,dayNow){
     let L = (218.316 + 13.176396*(days))%360;
     let M = (134.963 + 13.064993*(days))%360;
     let moonLongitude = L + 6.289 * Math.sin(M*0.0174533);
-    let equinox = new Date(Date.UTC(2022,2,20,15,33,0)).getTime();
     let sunLongitude = ((dayNow - equinox)/86400000)/365.256*360;
     let angle = moonLongitude - sunLongitude;
     if(angle < 0){
@@ -134,7 +165,7 @@ function getPhaseName(phaseAngle){
             moonName = 'Растущая Луна';
             break;
         case phaseAngle < 200:
-            moonName = 'Полнолуние';
+            moonName = 'Полнолуние' + `</br><i>"${fullMoonName()}"</i>`;
             break;
         case phaseAngle < 260:
             moonName = 'Убывающая Луна';
