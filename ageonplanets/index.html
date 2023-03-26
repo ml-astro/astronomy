@@ -2,57 +2,26 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Твой возраст на других планетах</title>
+	<title>Твой возраст на всех планетах</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="constants.js"></script>
     <script src="birthdays.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <main>
-    <h1 class="centered">Чтобы узнать свой возраст на разных планетах,<br/>укажи дату&nbsp;своего рождения на Земле</h1>
-    <div class="form"><form>
+    <h1>Чтобы узнать свой возраст на разных планетах,<br/>укажи дату рождения на Земле</h1>
+    <form>
             <label>Дата рождения</label>
             <input type="date" id="birthdate">
-        <div class="button" onclick="calculate()">РАССЧИТАТЬ</div>
-    </form></div>
+        <button class="button" onclick="calculate(event)">РАССЧИТАТЬ</button>
+    </form>
     
     <div id="unhide">
-    <p class='centered'>Итак, вот твой возраст!</p>
-    <table>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td><img src="mercury.jpg"/></td>
-            <td><p><span id="mercuryAge"></span> в годах Меркурия.<br/>Следующий день рождения:<br/> <span id="mercuryBD"></span></p></td>
-        </tr>
-        <tr>
-            <td><img src="venus.png"/></td>
-            
-            <td><p><span id="venusAge"></span> в годах Венеры.<br/>Следующий день рождения:<br/><span id="venusBD"></span></p></td>
-        </tr>
-        <tr>
-            <td><img src="mars.jpg"/></td>
-            <td><p><span id="marsAge"></span> в годах Марса.<br/>Следующий день рождения:<br/><span id="marsBD"></span></p></td>
-        </tr>
-        <tr>
-            <td><img src="jupiter.jpg"/></td>
-            <td><p><span id="jupiterAge"></span> в годах Юпитера.<br/>Следующий день рождения:<br/><span id="jupiterBD"></span></p></td>
-        </tr>
-        <tr>
-            <td><img src="saturn.jpg"/></td>
-            <td><p><span id="saturnAge"></span> в годах Сатурна.<br/>Следующий день рождения:<br/><span id="saturnBD"></span></p></td>
-        </tr>
-        <tr>
-            <td><img src="uranus.jpg"/></td>
-            <td><p><span id="uranusAge"></span> в годах Урана.<br/>Следующий день рождения:<br/><span id="uranusBD"></span></p></td>
-        </tr>
-        <tr>
-            <td><img src="neptune.jpg"/></td>
-            <td><p><span id="neptuneAge"></span> в годах Нептуна.<br/>Следующий день рождения:<br/><span id="neptuneBD"></span</p>></td>
-        </tr>
+    <p class='result'>Вот твой возраст!<br>&#129047;</p>
+    <table id="bdayList">
     </table>
-    Максим Лёвин, 2021
+    <p>Максим Лёвин, <script type="text/javascript">document.write(new Date().getFullYear())</script></p>
 </div>
 </main>
 </body>
